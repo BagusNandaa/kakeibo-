@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#fbf6ec" />
+    <title>Kakeibo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="mast">
+        <p class="eyebrow">Kakeibo</p>
+        <h1 id="month-title">This month</h1>
+        <p class="lede">A line, an amount, a bucket. Confirm before it stays.</p>
+      </header>
+
+      <section class="month-end" id="month-end" aria-labelledby="month-end-title">
+        <h2 id="month-end-title">Month end</h2>
+        <p class="section-copy">What you meant to keep, what you kept, and one change.</p>
+
+        <div id="meant-read">
+          <div class="stat">
+            <span>Meant to keep</span>
+            <strong id="meant-value">—</strong>
+          </div>
+          <div class="meant-actions">
+            <button type="button" id="meant-edit">Edit once</button>
+            <p id="meant-note">You can edit this once.</p>
+          </div>
+        </div>
+
+        <form id="meant-form" hidden>
+          <label for="meant-input">Meant to keep</label>
+          <input id="meant-input" inputmode="decimal" autocomplete="off" />
+          <p id="meant-error" class="error" hidden></p>
+          <div class="pair">
+            <button type="submit">Save meant to keep</button>
+            <button type="button" id="meant-cancel">Cancel</button>
+          </div>
+        </form>
+
+        <div class="stat">
+          <span>Kept</span>
+          <strong id="kept-value">—</strong>
+        </div>
+        <p id="kept-formula" class="section-copy"></p>
+
+        <div class="gap-block">
+          <p id="gap-kicker" class="gap-kicker">Gap</p>
+          <p id="gap-figure" class="gap-figure">—</p>
+          <p id="gap-sentence"></p>
+        </div>
+
+        <form id="change-form">
+          <label for="change">One change</label>
+          <input
+            id="change"
+            maxlength="160"
+            autocomplete="off"
+            placeholder="Pack lunch on workdays"
+          />
+          <button type="submit">Save this change</button>
+        </form>
+        <p id="change-saved" class="change-saved" hidden></p>
+      </section>
+
+      <section class="add" aria-labelledby="add-title">
+        <h2 id="add-title">Add a line</h2>
+        <p class="section-copy" id="chip-help">
+          These three spends come up most. A tap fills the line and still waits for confirm.
+        </p>
+        <div id="chips" class="chips" role="group" aria-labelledby="add-title"></div>
+
+        <form id="entry-form">
+          <label for="line">Line</label>
+          <div class="line-row">
+            <input
+              id="line"
+              name="line"
+              maxlength="160"
+              autocomplete="off"
+              placeholder="Bought groceries"
+            />
+            <button type="button" id="speak" aria-pressed="false">Speak</button>
+          </div>
+          <p id="speak-note" class="section-copy"></p>
+          <p class="rules">
+            Spend words: bought, spent, paid for. Income words: got, paid, salary, refund.
+          </p>
+
+          <label for="amount">Amount</label>
+          <div class="amount-row">
+            <span aria-hidden="true">$</span>
+            <input
+              id="amount"
+              name="amount"
+              inputmode="decimal"
+              autocomplete="off"
+              placeholder="0.00"
+            />
+          </div>
+
+          <fieldset>
+            <legend>Bucket</legend>
+            <div class="buckets">
+              <label class="bucket">
+                <input type="radio" name="bucket" value="needs" />
+                Needs
+              </label>
+              <label class="bucket">
+                <input type="radio" name="bucket" value="wants" />
+                Wants
+              </label>
+              <label class="bucket">
+                <input type="radio" name="bucket" value="culture" />
+                Culture
+              </label>
+              <label class="bucket">
+                <input type="radio" name="bucket" value="unexpected" />
+                Unexpected
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="preview" aria-live="polite">
+            <p class="preview-label">This will save as</p>
+            <dl>
+              <div>
+                <dt>Direction</dt>
+                <dd id="preview-direction">Not yet</dd>
+              </div>
+              <div>
+                <dt>Amount</dt>
+                <dd id="preview-amount">Not yet</dd>
+              </div>
+              <div>
+                <dt>Bucket</dt>
+                <dd id="preview-bucket">Not yet</dd>
+              </div>
+            </dl>
+            <p id="preview-sentence"></p>
+          </div>
+          <button type="submit" id="confirm" disabled>Confirm</button>
+          <p class="section-copy">Nothing is saved until you confirm.</p>
+        </form>
+      </section>
+
+      <section aria-labelledby="list-title">
+        <h2 id="list-title">This month</h2>
+        <ul id="entries" class="entries"></ul>
+      </section>
+
+      <p id="status" class="visually-hidden" aria-live="polite"></p>
+    </main>
+    <noscript>This notebook stays in the browser and needs JavaScript to run.</noscript>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
