@@ -3,20 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#fbf6ec" />
+    <meta name="theme-color" content="#f4f2ee" />
     <title>Kakeibo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="sheet">
       <header class="mast">
-        <p class="eyebrow">Kakeibo</p>
         <h1 id="month-title">This month</h1>
-        <p class="lede">A line, an amount, a bucket. Confirm before it stays.</p>
       </header>
 
       <section class="month-end" id="month-end" aria-labelledby="month-end-title">
         <h2 id="month-end-title">Month end</h2>
+        <div class="gap-block">
+          <p id="gap-kicker" class="gap-kicker">Gap</p>
+          <p id="gap-figure" class="gap-figure">—</p>
+          <p id="gap-sentence"></p>
+        </div>
         <p class="section-copy">What you meant to keep, what you kept, and one change.</p>
 
         <div id="meant-read">
@@ -45,12 +48,6 @@
           <strong id="kept-value">—</strong>
         </div>
         <p id="kept-formula" class="section-copy"></p>
-
-        <div class="gap-block">
-          <p id="gap-kicker" class="gap-kicker">Gap</p>
-          <p id="gap-figure" class="gap-figure">—</p>
-          <p id="gap-sentence"></p>
-        </div>
 
         <form id="change-form">
           <label for="change">One change</label>
@@ -85,9 +82,6 @@
             <button type="button" id="speak" aria-pressed="false">Speak</button>
           </div>
           <p id="speak-note" class="section-copy"></p>
-          <p class="rules">
-            Spend words: bought, spent, paid for. Income words: got, paid, salary, refund.
-          </p>
 
           <label for="amount">Amount</label>
           <div class="amount-row">
@@ -146,7 +140,7 @@
         </form>
       </section>
 
-      <section aria-labelledby="list-title">
+      <section class="list" aria-labelledby="list-title">
         <h2 id="list-title">This month</h2>
         <ul id="entries" class="entries"></ul>
       </section>
