@@ -119,7 +119,7 @@ function renderChips() {
     button.className = "chip";
     button.setAttribute(
       "aria-label",
-      `Fill the line with ${chip.label}. Repeated ${chip.count} times. Still needs confirm.`,
+      `Fill the line, amount, and bucket from ${chip.label}. Repeated ${chip.count} times. Still needs confirm.`,
     );
     const label = document.createElement("span");
     label.textContent = chip.label;
@@ -129,6 +129,11 @@ function renderChips() {
     button.append(label, count);
     button.addEventListener("click", () => {
       lineInput.value = chip.label;
+      amountInput.value = String(chip.amount);
+      const bucket = entryForm.querySelector(
+        `input[name="bucket"][value="${chip.bucket}"]`,
+      );
+      if (bucket) bucket.checked = true;
       renderPreview();
       amountInput.focus();
     });

@@ -154,12 +154,67 @@ describe("month", () => {
 
   it("turns the three most repeated spends into chips", () => {
     assert.deepEqual(
-      topSpendChips(entries).map((chip) => [chip.label, chip.count]),
+      topSpendChips(entries).map((chip) => [
+        chip.label,
+        chip.count,
+        chip.amount,
+        chip.bucket,
+      ]),
       [
-        ["Bought coffee", 6],
-        ["Spent on lunch", 4],
-        ["Bought groceries", 4],
+        ["Bought coffee", 6, 6, "wants"],
+        ["Spent on lunch", 4, 15, "wants"],
+        ["Bought groceries", 4, 90, "needs"],
       ],
+    );
+  });
+
+  it("fills a chip from the most recent matching spend", () => {
+    const chips = topSpendChips([
+      {
+        id: "new",
+        line: "Bought coffee",
+        amount: 7.5,
+        bucket: "wants",
+        direction: "spend",
+        at: 30,
+      },
+      {
+        id: "old",
+        line: "Bought coffee",
+        amount: 4,
+        bucket: "needs",
+        direction: "spend",
+        at: 10,
+      },
+      {
+        id: "mid",
+        line: "  bought   coffee ",
+        amount: 5,
+        bucket: "culture",
+        direction: "spend",
+        at: 20,
+      },
+    ]);
+    assert.deepEqual(
+      chips.map((chip) => [chip.label, chip.count, chip.amount, chip.bucket]),
+      [["Bought coffee", 3, 7.5, "wants"]],
+    );
+    const [chip] = chips;
+    const preview = previewCopy({
+      line: chip.label,
+      amount: chip.amount,
+      bucket: chip.bucket,
+    });
+    assert.equal(preview.ready, true);
+    assert.equal(preview.direction, "spend");
+    assert.equal(
+      entryFromConfirm({
+        id: "not-yet",
+        line: chip.label,
+        amountRaw: "",
+        bucket: chip.bucket,
+      }),
+      null,
     );
   });
 

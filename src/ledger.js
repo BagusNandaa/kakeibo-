@@ -194,12 +194,21 @@ export function topSpendChips(entries, limit = 3) {
     const label = normalizeLine(entry.line);
     const current = groups.get(key);
     if (!current) {
-      groups.set(key, { key, label, count: 1, latest: entry.at });
+      groups.set(key, {
+        key,
+        label,
+        count: 1,
+        latest: entry.at,
+        amount: entry.amount,
+        bucket: entry.bucket,
+      });
     } else {
       current.count += 1;
       if (entry.at >= current.latest) {
         current.latest = entry.at;
         current.label = label;
+        current.amount = entry.amount;
+        current.bucket = entry.bucket;
       }
     }
   }

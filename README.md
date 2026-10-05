@@ -25,7 +25,7 @@ Type a line, or use Speak when the browser offers speech input. The amount is it
 
 Pick a bucket: needs, wants, culture, or unexpected. The screen shows the direction, amount, and bucket, and nothing is written until Confirm.
 
-The three spends that repeat most are chips. A chip fills the line and still waits for Confirm.
+The three spends that repeat most are chips. A chip fills the line, the amount, and the bucket from the most recent matching entry, and still waits for Confirm.
 
 Month end shows what you meant to keep, what you kept, and the gap. Kept is income minus spend. The meant-to-keep figure starts at $2,500 and can be edited once. The screen then asks for one change.
 
